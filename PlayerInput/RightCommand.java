@@ -1,10 +1,10 @@
 package PlayerInput;
-import ICommand;
+//import ICommand;
 
 public class RightCommand implements ICommand {
 	MovementDirection MovementDirection;
 	
-	public DownCommand( MovementDirection MovementDirection) {
+	public RightCommand( MovementDirection MovementDirection) {
 		super();
 		this.MovementDirection = MovementDirection;
 	}

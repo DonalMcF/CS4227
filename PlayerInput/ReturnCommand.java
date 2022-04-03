@@ -3,7 +3,7 @@ import ICommand;
 public class ReturnCommand implements ICommand {
 	ButtonPress ButtonPress;
 	
-	public DownCommand( ButtonPress ButtonPress) {
+	public ReturnCommand( ButtonPress ButtonPress) {
 		super();
 		this.ButtonPress = ButtonPress;
 	}

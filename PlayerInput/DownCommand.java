@@ -1,5 +1,5 @@
 package PlayerInput;
-import ICommand;
+//import ICommand;
 
 public class DownCommand implements ICommand {
 	MovementDirection MovementDirection;
