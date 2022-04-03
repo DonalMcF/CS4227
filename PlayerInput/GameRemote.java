@@ -1,10 +1,10 @@
 package PlayerInput;
 
 public class GameRemote {
-	iCommand command;
+	ICommand command;
 	
 	public void setCommand(ICommand command) {
-		this command = command;
+		this.command = command;
 	}
 	
 	public void buttinPressed() {
