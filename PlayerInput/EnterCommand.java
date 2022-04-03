@@ -1,10 +1,10 @@
 package PlayerInput;
-import ICommand;
+//import ICommand;
 
 public class EnterCommand implements ICommand {
 	ButtonPress ButtonPress;
 	
-	public DownCommand( ButtonPress ButtonPress) {
+	public EnterCommand( ButtonPress ButtonPress) {
 		super();
 		this.ButtonPress = ButtonPress;
 	}
