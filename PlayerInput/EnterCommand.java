@@ -1,5 +1,4 @@
 package PlayerInput;
-//import ICommand;
 
 public class EnterCommand implements ICommand {
 	ButtonPress ButtonPress;
@@ -9,8 +8,8 @@ public class EnterCommand implements ICommand {
 		this.ButtonPress = ButtonPress;
 	}
 	
-	public void execute() {
-		System.out.println("Pressed Enter");
+	public boolean execute() {
 		ButtonPress.pressEnter();
+		return false;
 	}
 }

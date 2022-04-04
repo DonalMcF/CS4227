@@ -1,5 +1,5 @@
 package PlayerInput;
-import ICommand;
+
 public class ReturnCommand implements ICommand {
 	ButtonPress ButtonPress;
 	
@@ -8,8 +8,8 @@ public class ReturnCommand implements ICommand {
 		this.ButtonPress = ButtonPress;
 	}
 	
-	public void execute() {
-		System.out.println("Pressed Return");
+	public boolean execute() {
 		ButtonPress.pressReturn();
+		return false;
 	}
 }

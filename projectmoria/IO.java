@@ -1,10 +1,10 @@
 package projectmoria;
-
 import java.io.*;
 import java.util.List;
 
-public final class IO {
+import PlayerInput.*;
 
+public final class IO {
     public static void playerCrit() {
         System.out.println("Nice! You landed a critical hit! (x2 Damage)");
     }
@@ -70,6 +70,9 @@ public final class IO {
     public static boolean displayPlayerStats(String name, String description,
             int maxHitPoints, int minDamage, int maxDamage, int defense,
             double critChance) {
+        ButtonPress userButton = new ButtonPress();
+        GameRemote remote = new GameRemote();
+            
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                 + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
@@ -89,14 +92,17 @@ public final class IO {
         System.out.println();
         System.out.println("ARE YOU SURE YOU WANT TO PLAY AS A "
                 + name.toUpperCase() + "? "
-                + "(y/n)");
+                + "(enter/return)");
         System.out.println();
         System.out.println();
         System.out.println();
-        if (ProjectMoria.USERINPUT.nextLine().equals("y")) {
-            return true;
+        if (ProjectMoria.USERINPUT.nextLine().equals("enter")) {
+            remote.setCommand( new EnterCommand( userButton));
+            return remote.buttonPressed();
+            
         } else {
-            return false;
+            remote.setCommand( new ReturnCommand( userButton));
+            return remote.buttonPressed();
         }
     }
 
@@ -105,9 +111,8 @@ public final class IO {
                 + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
                 + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("This game was created by Jackson Kolb.");
-        System.out.println("Would you like to return to the main menu? (y/n)");
-        if (ProjectMoria.USERINPUT.nextLine().equals("y")) {
+        System.out.println("Would you like to proceed to the main menu? (enter/return)");
+        if (ProjectMoria.USERINPUT.nextLine().equals("enter")) {
             ProjectMoria.mainMenu();
         }
     }
@@ -124,29 +129,39 @@ public final class IO {
     }
     
     public static void movePlayer(Player player) {
+        MovementDirection userDirection = new MovementDirection();
+        GameRemote remote = new GameRemote();
 
         if (Dungeon.isNorthDirection() == true) {
-            System.out.println("North (n)\n");
+            System.out.println("North (up)\n");
         }
         if (Dungeon.isSouthDirection() == true) {
-            System.out.println("South (s)\n");
+            System.out.println("South (down)\n");
         }
         if (Dungeon.isEastDirection() == true) {
-            System.out.println("East (e)\n");
+            System.out.println("East (left)\n");
         }
         if (Dungeon.isWestDirection() == true) {
-            System.out.println("West (w)\n");
+            System.out.println("West (right)\n");
         }
 
         System.out.print("Where would you like to travel?: ");
         String selection = ProjectMoria.USERINPUT.nextLine();
-        if (selection.equals("n") && Dungeon.isNorthDirection()) {
+        if (selection.equals("up") && Dungeon.isNorthDirection()) {
+            remote.setCommand( new UpCommand( userDirection));
+            remote.buttonPressed();
             player.setCurrY(player.getCurrY() + 1);
-        } else if (selection.equals("s") && Dungeon.isSouthDirection()) {
+        } else if (selection.equals("down") && Dungeon.isSouthDirection()) {
+            remote.setCommand( new DownCommand( userDirection));
+            remote.buttonPressed();
             player.setCurrY(player.getCurrY() - 1);
-        } else if (selection.equals("e") && Dungeon.isEastDirection()) {
+        } else if (selection.equals("left") && Dungeon.isEastDirection()) {
+            remote.setCommand( new LeftCommand( userDirection));
+            remote.buttonPressed();
             player.setCurrX(player.getCurrX() + 1);
-        } else if (selection.equals("w") && Dungeon.isWestDirection()) {
+        } else if (selection.equals("right") && Dungeon.isWestDirection()) {
+            remote.setCommand( new RightCommand( userDirection));
+            remote.buttonPressed();
             player.setCurrX(player.getCurrX() - 1);
         }
 
@@ -172,14 +187,14 @@ public final class IO {
             System.out.println("\nMonster HP: " + monster.getHitPoints()
                     + "    " + "Player HP: " + player.getHitPoints());
             System.out.println("----------------------------------");
-            System.out.print("\nAttack (a)   Heal (h)");
+            System.out.print("\nAttack (enter)   Heal (return)");
             String action = ProjectMoria.USERINPUT.nextLine();
-            if (action.equals("a")) {
+            if (action.equals("enter")) {
                 monster.defend(player);
                 if (monster.isAlive()) {
                     player.defend(monster);
                 }
-            } else if (action.equals("h")) {
+            } else if (action.equals("return")) {
                 boolean potionExists = false;
                 if (!inventory.isEmpty()) {
                     for (int i = 0; i < inventory.size(); i++) {

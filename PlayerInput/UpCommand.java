@@ -1,5 +1,4 @@
 package PlayerInput;
-//import ICommand;
 
 public class UpCommand implements ICommand {
 	MovementDirection MovementDirection;
@@ -9,8 +8,9 @@ public class UpCommand implements ICommand {
 		this.MovementDirection = MovementDirection;
 	}
 	
-	public void execute() {
-		System.out.println("Moving Up");
+	public boolean execute() {
 		MovementDirection.moveUp();
+		System.out.println("You move North");
+		return true;
 	}
 }

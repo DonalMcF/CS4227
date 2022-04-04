@@ -1,5 +1,5 @@
 package PlayerInput;
-//import ICommand;
+
 
 public class LeftCommand implements ICommand {
 	MovementDirection MovementDirection;
@@ -9,8 +9,9 @@ public class LeftCommand implements ICommand {
 		this.MovementDirection = MovementDirection;
 	}
 	
-	public void execute() {
-		System.out.println("Moving Left");
+	public boolean execute() {
 		MovementDirection.moveLeft();
+		System.out.println("You move West");
+		return true;
 	}
 }
