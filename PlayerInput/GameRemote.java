@@ -7,8 +7,8 @@ public class GameRemote {
 		this.command = command;
 	}
 	
-	public void buttinPressed() {
-		command.execute();
+	public boolean buttonPressed() {
+		return command.execute();
 	}
 	
 }

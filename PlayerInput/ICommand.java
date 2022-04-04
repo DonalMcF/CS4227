@@ -2,5 +2,5 @@ package PlayerInput;
 
 @FunctionalInterface
 public interface ICommand {
-	public void execute();
+	public boolean execute();
 }

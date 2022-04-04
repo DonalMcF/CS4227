@@ -1,11 +1,11 @@
 package PlayerInput;
 
 public class ButtonPress {
-	public void pressEnter() {
-		System.out.println("pressed enter");
+	public boolean pressEnter() {
+		return true;
 	}
 	
-	public void pressReturn() {
-		System.out.println("pressed return");
+	public boolean pressReturn() {
+		return true;
 	}
 }
