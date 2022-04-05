@@ -3,6 +3,7 @@ package projectmoria;
 import java.io.Serializable; //This is used for saving the gamestate
 import java.util.Random;
 import java.util.Scanner; 
+import projectmoria.*;
 
 public class ProjectMoria {
 
@@ -56,14 +57,16 @@ public class ProjectMoria {
                     status = IO.displayPlayerStats("Warrior", "A tough, "
                             + "well-rounded fighter with a balanced skillset.",
                             100, 20, 30, 3, 0.10);
-                    currPlayer = Player.newWarrior();
+                            Player ourwarrior = (Player) CharacterFactory.getCharacter("Player");
+                            currPlayer = ourwarrior.newWarrior();
 
                     break;
                 case "2":
                     status = IO.displayPlayerStats("Dueler", "A quick, nimble "
                             + "duelist with an aptitude for landing critical "
                             + "attacks.", 80, 10, 50, 2, 0.18);
-                    currPlayer = Player.newDuelist();
+                            Player ourduelist = (Player) CharacterFactory.getCharacter("Player");
+                            currPlayer = ourduelist.newDuelist();
 
                     break;
             }

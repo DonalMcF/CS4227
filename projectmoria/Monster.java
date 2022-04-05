@@ -2,10 +2,10 @@
 
 package projectmoria;
 
+import projectmoria.*;
 import java.util.Random;
-import Character.java;
 
-public class Monster {
+public class Monster implements Character{
 
     private final String name;
     private final String description;
@@ -21,7 +21,7 @@ public class Monster {
 
     public Monster(String name, String description, int maxHitPoints,
             int minDamage, int maxDamage, int defense, double critChance,
-            boolean aggression) implements Character {
+            boolean aggression)  {
         this.name = name;
         this.description = description;
         this.maxHitPoints = maxHitPoints;
@@ -38,7 +38,6 @@ public class Monster {
         return rand.nextInt(maxDamage - minDamage - 1);
     }
 
-    @Override
     public int defend(Player player) {
         int incomingAttack = player.attack();
         int random = rand.nextInt(99) + 1;
@@ -134,3 +133,4 @@ public class Monster {
         return critChance;
     }
 }
+
