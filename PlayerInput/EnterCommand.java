@@ -10,6 +10,6 @@ public class EnterCommand implements ICommand {
 	
 	public boolean execute() {
 		ButtonPress.pressEnter();
-		return false;
+		return true;
 	}
 }
