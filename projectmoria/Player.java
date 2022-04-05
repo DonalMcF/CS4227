@@ -7,7 +7,7 @@
     import java.util.List;
 
     
-    public class Player {
+    public class Player implements Character{
 
         private String name;
         private String description;
@@ -22,16 +22,11 @@
         private List<Item> inventory;
         private Room currRoom;
 
-        public Player() implements Character{
+        public Player() {
             this.currX = 14;
             this.currY = 14;
             this.inventory = new ArrayList<>(10);
             Item.addPotion(3, this);
-        }
-
-        public void SetName(String name)
-        {
-            this.name = name;
         }
 
         @Override
@@ -39,7 +34,6 @@
             return ProjectMoria.RAND.nextInt(maxDamage - minDamage + 1);
         }
 
-        @Override
         public int defend(Monster monster) {
             int incomingAttack = monster.attack();
             int random = ProjectMoria.RAND.nextInt(99) + 1;
@@ -74,49 +68,48 @@
 
         public static Player newDuelist() {
             Player OurDuelist = new Player();
-            Ourwarrior.setName("Warrior");
-            Ourwarrior.SetDescription("A tough, well-rounded fighter with"
+            OurDuelist.SetName("Warrior");
+            OurDuelist.SetDescription("A tough, well-rounded fighter with"
             + " a balanced skillset.");
-            Ourwarrior.SetMaxHitPoints(100);
-            Ourwarrior.SetMinDamage(20);
-            Ourwarrior.SetMaxDamage(30);
-            Ourwarrior.SetDefense(3);
-            Ourwarrior.SetCritChance(10);
+            OurDuelist.SetMaxHitPoints(100);
+            OurDuelist.SetMinDamage(20);
+            OurDuelist.SetMaxDamage(30);
+            OurDuelist.SetDefense(3);
+            OurDuelist.SetCritChance(10);
             return OurDuelist;
         }
 
-        @Override
+        public void SetName(String name)
+        {
+            this.name = name;
+        }
+
         public void SetDescription(String description)
         {
             this.description = description;
         }
 
-        @Override
         public void SetMaxHitPoints(int maxHitPoints)
         {
             this.maxHitPoints = maxHitPoints;
             this.hitPoints = maxHitPoints;
         }
 
-        @Override
         public void SetMinDamage(int minDamage)
         {
             this.minDamage = minDamage;
         }
 
-        @Override
         public void SetMaxDamage(int maxDamage)
         {
             this.maxDamage = maxDamage;
         }
 
-        @Override
         public void SetDefense(int defense)
         {
             this.defense = defense;
         }
 
-        @Override
         public void SetCritChance(int critChance)
         {
             this.critChance = critChance;
@@ -142,22 +135,18 @@
             return name;
         }
 
-        @Override
         public int getMaxHitPoints() {
             return maxHitPoints;
         }
 
-        @Override
         public int getMinDamage() {
             return minDamage;
         }
 
-        @Override
         public int getMaxDamage() {
             return maxDamage;
         }
 
-        @Override
         public int getDefense() {
             return defense;
         }
